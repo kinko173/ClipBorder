@@ -5,7 +5,7 @@ from config_manager import get_is_active, set_is_active
 class ConfigController:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Anti-Clickfix Controller")
+        self.root.title("ClipBorder")
         self.root.geometry("300x150")
         
         # 現在の状態表示
