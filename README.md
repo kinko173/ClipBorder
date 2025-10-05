@@ -12,7 +12,7 @@ Clipboardを監視し、悪性のコマンドやURLがペーストされるの�
  
 ### 1. インストール手順
  
-GitHubの**releases**からzipファイルをダウンロードします。
+GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipファイルをダウンロードします。
  
 ### 2. 起動方法
  
