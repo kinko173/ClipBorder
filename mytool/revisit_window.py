@@ -1,24 +1,7 @@
-import tkinter as tk
 import json
 import os
 import sys
 import winreg
-from tkinter import messagebox, ttk
-from tkinter import simpledialog
-from api_key_manager import (
-    save_llm_api_key, save_url_api_key,
-    load_llm_api_key, validate_llm_api_key,
-    load_url_api_key, validate_url_api_key,
-    setup_key_invalid, WelcomeWindow,
-)
-
-#STATUS_FILE = "STATUS_FILE.json"
-"""
-try:
-    BASE_DIR = os.path.dirname(__file__)  # .py 実行時
-except NameError:
-    BASE_DIR = os.path.dirname(sys.executable)  # EXE 実行時
-"""
 
 # Python embeddableでの実行を想定した適切なパス取得
 if getattr(sys, 'frozen', False):
@@ -30,6 +13,20 @@ else:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 LOCK_FILE = os.path.join(BASE_DIR, "controller.lock")
+"""
+os.environ["TCL_LIBRARY"] = os.path.join(BASE_DIR, "tcl", "tcl8.6")
+os.environ["TK_LIBRARY"]  = os.path.join(BASE_DIR, "tcl", "tk8.6")
+"""
+import tkinter as tk
+from tkinter import messagebox, ttk
+
+from tkinter import simpledialog
+from api_key_manager import (
+    save_llm_api_key, save_url_api_key,
+    load_llm_api_key, validate_llm_api_key,
+    load_url_api_key, validate_url_api_key,
+    setup_key_invalid, WelcomeWindow,
+)
 
 # レジストリのスタートアップに登録する関数
 def register_startup():
@@ -76,7 +73,7 @@ class Revisitwindow:
         register_startup()
         
         self.root = tk.Tk()
-        self.root.title("設定")
+        self.root.title("ClipBorder")
         self.root.geometry("380x280")
         self.root.resizable(False, False)
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
@@ -104,19 +101,43 @@ class Revisitwindow:
 
         # func() ON/OFF切替ボタン
         self.switch_states_status = False
-        self.switch_states_button = tk.Button(self.root, text="機能のon/off切り替え", command=self.call_toggle_config)
+        self.switch_states_button = tk.Button(
+            self.root,
+            text="機能のON/OFF切り替え",
+            command=self.call_toggle_config,
+            bg="#F5B7B1",   # 背景：赤
+            fg="black",     # 文字：白
+            activebackground="#C0392B",  # 押したときの背景色
+            activeforeground="white"     # 押したときの文字色
+        )
         self.switch_states_button.pack(side="left",padx=10)
 
         # ホワイトリスト設定ボタン
-        self.whitelist_button = tk.Button(self.root, text="ホワイトリスト設定", command=self.set_whitelist)
+        self.whitelist_button = tk.Button(
+            self.root,
+            text="ホワイトリスト設定",
+            command=self.set_whitelist,
+            bg="#85C1E9",   # 背景：青
+            fg="black",
+            activebackground="#2E86C1",
+            activeforeground="white"
+        )
         self.whitelist_button.pack(side="left",padx=10)
 
         # API鍵設定ボタン
-        self.api_button = tk.Button(self.root, text="API鍵設定", command=self.set_api_keys)
+        self.api_button = tk.Button(
+            self.root,
+            text="APIキー設定",
+            command=self.set_api_keys,
+            bg="#A9DFBF",   # 背景：緑
+            fg="black",
+            activebackground="#1E8449",
+            activeforeground="white"
+        )
         self.api_button.pack(side="left",padx=10)
 
     def set_whitelist(self):
-        WHITELIST_FILE = "whitelist.json"
+        WHITELIST_FILE = os.path.join(BASE_DIR, "whitelist.json")
 
         # ホワイトリストを読み込む関数
         def load_whitelist() -> dict:
@@ -134,6 +155,7 @@ class Revisitwindow:
 
         # 現在のリスト
         current_list = load_whitelist()
+        print(f"(curenr:{current_list})")
         current_key = tk.StringVar(value="urls")
 
         # ウィンドウ作成
@@ -147,8 +169,16 @@ class Revisitwindow:
         # キー選択（プルダウン）
         tk.Label(wl_window, text="対象を選択してください：", font=("Arial", 11)).pack(pady=5)
         #変更渕
+        """
         key_selector = ttk.Combobox(wl_window, textvariable=current_key, values=["texts", "urls"], state="readonly", width=10)
         key_selector.pack(pady=5)
+        """
+        
+        options = ["texts", "urls"]
+        key_selector = tk.OptionMenu(wl_window, current_key, *options)
+        key_selector.config(width=10)
+        key_selector.pack(pady=5)
+        
 
         # スクロール付きリスト
         list_frame = tk.Frame(wl_window)
@@ -169,7 +199,8 @@ class Revisitwindow:
                 listbox.insert(tk.END, item)
 
         refresh_list()
-        key_selector.bind("<<ComboboxSelected>>", refresh_list)
+        #key_selector.bind("<<ComboboxSelected>>", refresh_list)
+        current_key.trace_add("write", refresh_list)  # ← 変更箇所
     
         # 新規追加
         def add_item():
@@ -267,7 +298,7 @@ class Revisitwindow:
         llm_entry.grid(row=0, column=1, padx=5, pady=5)
         llm_entry.insert(0, load_llm_api_key() or "")
 
-        tk.Label(frame, text="URL検知 APIキー：", font=("Arial", 11)).grid(row=1, column=0, sticky="w")
+        tk.Label(frame, text="URL検知用 APIキー：", font=("Arial", 11)).grid(row=1, column=0, sticky="w")
         url_entry = tk.Entry(frame, width=50)
         url_entry.grid(row=1, column=1, padx=5, pady=5)
         url_entry.insert(0, load_url_api_key() or "")
