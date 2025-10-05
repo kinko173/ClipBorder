@@ -30,10 +30,8 @@ GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipフ
 ---
  
 ### URL検知用 APIキーの取得方法
- <p align="center">
-  <img src="./img/URL_API.png" alt="画像1" width="300">
-  <img src="./img/URL_API.png2" alt="画像2" width="300">
-</p>
+![URL_API取得画面](./img/URL_API.png)<br>
+![URL_API取得画面2](./img/URL_API2.png)<br>
 1.  以下のURLにアクセスします：https://auth.abuse.ch
 2.  ログイン画面が表示されるので、アカウントを作成またはログインします。
 3.  ログイン後、「Screen Name」と「Display Name」に任意の文字列（半角英数字記号で3文字以上）を入力し、✓マークが表示されることを確認します。
