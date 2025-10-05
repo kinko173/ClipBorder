@@ -41,7 +41,7 @@ print("cwd:", os.getcwd())
 class AntiClickfixController:
     def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Anti-Clickfix Controller")
+        self.root.title("ClipBorder")
         self.root.geometry("400x220")
         self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
         
@@ -51,7 +51,7 @@ class AntiClickfixController:
         self.monitoring_active = True
         
         # 起動時に既存の状態を確認
-        self.check_existing_state()
+        #self.check_existing_state()
         
         # GUI要素
         self.create_widgets()
@@ -125,7 +125,7 @@ class AntiClickfixController:
     def create_widgets(self):
         """GUI要素を作成"""
         # タイトル
-        title_label = tk.Label(self.root, text="Anti-Clickfix Controller", 
+        title_label = tk.Label(self.root, text="ClipBorder Controller", 
                               font=("Arial", 16, "bold"))
         title_label.pack(pady=10)
         
@@ -156,18 +156,18 @@ class AntiClickfixController:
         try:
             is_active = get_is_active()
             if is_active == 1:
-                self.status_label.config(text="状態: 監視中", fg="green")
+                self.status_label.config(text="状態: ON", fg="green")
             else:
-                self.status_label.config(text="状態: 停止中", fg="red")
+                self.status_label.config(text="状態: OFF", fg="red")
                 
             # プロセス状態 - より詳細な表示
             if self.clipboard_process and self.clipboard_process.poll() is None:
-                self.process_label.config(text="管理中プロセス: 実行中", fg="blue")
+                self.process_label.config(text="クリップボード監視中", fg="blue")
             elif is_active == 1:
                 # config.jsonでは有効だが、管理中プロセスがない場合
-                self.process_label.config(text="プロセス: 他で起動済み（管理外）", fg="orange")
+                self.process_label.config(text="クリップボード監視中", fg="blue")
             else:
-                self.process_label.config(text="プロセス: 停止中", fg="gray")
+                self.process_label.config(text="停止中", fg="gray")
                 
         except Exception as e:
             print(f"Status update error: {e}")
