@@ -14,13 +14,13 @@ GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipフ
     * デスクトップから起動したい場合は、run.batのショートカットをデスクトップに作成してください。
  
 ### 3. 初回起動時の設定
-![サンプル画像](./img/frstapi.png)<br>
+![初回起動画面](./img/frstapi.png)<br>
 初回起動時には、LLMおよびURL検知ツールを利用するための**APIキー**を入力する必要があります。以下の手順に従って、それぞれのAPIキーを取得してください。
  
 ---
  
 ### LLM APIキーの取得方法
- 
+![LLM_API取得画面](./img/LLM_API.png)<br>
 1.  以下のURLにアクセスします：https://console.groq.com/keys
 2.  ログイン画面が表示されるので、アカウントでログインします。
 3.  ログイン後、右上の「Create API Key」をクリックします。
@@ -30,7 +30,10 @@ GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipフ
 ---
  
 ### URL検知用 APIキーの取得方法
- 
+ <p align="center">
+  <img src="./img/URL_API.png" alt="画像1" width="300">
+  <img src="./img/URL_API.png2" alt="画像2" width="300">
+</p>
 1.  以下のURLにアクセスします：https://auth.abuse.ch
 2.  ログイン画面が表示されるので、アカウントを作成またはログインします。
 3.  ログイン後、「Screen Name」と「Display Name」に任意の文字列（半角英数字記号で3文字以上）を入力し、✓マークが表示されることを確認します。
