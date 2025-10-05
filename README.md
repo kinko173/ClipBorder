@@ -60,3 +60,10 @@ GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipフ
 * 不正なAPIキーや入力ミスがある場合、ツールは正常に動作しません。
 * 2回目以降の起動時はキー入力は不要です。
 * APIキーが無効な場合は、再度上記手順で新しいキーを取得してください。
+
+---
+## アンインストール方法
+1.  Win+Rボタンを押して「regedit」を入力し、Enterを押す。
+2.  レジストリエディターの「コンピューター\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run」からAntiClickfixMonitorを選択し右クリック
+3.  削除を選択
+4.  ClipBorderのディレクトリを削除
