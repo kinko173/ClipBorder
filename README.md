@@ -14,7 +14,7 @@ GitHubの[releases](https://github.com/kinko173/ClipBorder/releases)からzipフ
     * デスクトップから起動したい場合は、run.batのショートカットをデスクトップに作成してください。
  
 ### 3. 初回起動時の設定
- 
+![サンプル画像](./img/Clipborder_API_reg.png)
 初回起動時には、LLMおよびURL検知ツールを利用するための**APIキー**を入力する必要があります。以下の手順に従って、それぞれのAPIキーを取得してください。
  
 ---
