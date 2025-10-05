@@ -7,7 +7,7 @@ from whitelist_gui import whitelist_window  # ホワイトリスト登録画面�
 # 詳細説明用の小ウィンドウ
 def show_detail_window(detailed_text: str):
     detail_win = tk.Toplevel()
-    detail_win.title("詳細な説明")
+    detail_win.title("ClipBorder")
     detail_win.geometry("600x400")
     detail_win.configure(bg="#FDFEFE")
     detail_win.attributes("-topmost", True)  # 常に最前面に表示
@@ -25,7 +25,7 @@ def show_detail_window(detailed_text: str):
 # 警告画面
 def show_warning_window(title: str, message: str, options, detailed_analysis: str = ""):
     root = tk.Tk()
-    root.title(title)
+    root.title("ClipBorder")
     root.geometry("600x400")
     root.resizable(False, False)
     root.configure(bg="#FDEDEC")  # 薄赤背景
