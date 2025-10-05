@@ -103,7 +103,7 @@ def setup_key_invalid(llm=False, url=False):
             self.url_flag = url_flag
             self.result = None  # True or False
             self.root = tk.Tk()
-            self.root.title("APIキー再設定")
+            self.root.title("ClipBorder")
             self.root.geometry("550x250")
             self.root.resizable(False, False)
 
@@ -150,7 +150,7 @@ def setup_key_invalid(llm=False, url=False):
                 # 手順説明
                 tk.Label(
                     frame,
-                    text="※URL検知サービス用 APIキーの取得方法については、\n  Anti-Clickfix GitHub リポジトリの説明をご参照ください\n",
+                    text="※URL検知用 APIキーの取得方法については、\n  Anti-Clickfix GitHub リポジトリの説明をご参照ください\n",
                     font=("Arial", 10),
                     fg="#555555",
                     justify="left",
@@ -159,7 +159,7 @@ def setup_key_invalid(llm=False, url=False):
                 row_idx += 1
 
                 # 入力ラベルとEntry
-                tk.Label(frame, text="URL検知 APIキー：", font=("Arial", 11)).grid(row=row_idx, column=0, sticky="w")
+                tk.Label(frame, text="URL検知用 APIキー：", font=("Arial", 11)).grid(row=row_idx, column=0, sticky="w")
                 self.url_entry = tk.Entry(frame, width=50)
                 self.url_entry.grid(row=row_idx, column=1, padx=5, pady=5)
                 self.url_entry.insert(0, load_url_api_key() or "")
@@ -216,24 +216,33 @@ class WelcomeWindow:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("初回設定")
-        self.root.geometry("550x400")
+        self.root.geometry("600x500")
         self.root.resizable(False, False)
         
         tk.Label(
             self.root,
-            text="✨ Anti-Clickfix ✨",
+            text="✨ ClipBorder ✨",
             font=("Arial", 16, "bold"),
             fg="#2E86C1"
         ).pack(pady=10)
 
         tk.Label(
             self.root,
+            text="ClipBorderは、ClickFix対策ツールです。",
+            font=("Arial", 13, "bold"),
+            fg="#1A5276",
+            justify="center"
+        ).pack(pady=10)
+
+        tk.Label(
+            self.root,
             text=(
-                "初回起動時に LLM と URL検知用の APIキー設定が必要です。\n\n"
+                "Clipboardを監視し、悪性のコマンドやURLがペーストされるのを防ぐ機能を提供します。\n"
+                "初回起動時には LLM と URL検知用の APIキー設定が必要です。\n\n"
                 "1. LLMとURL検知用のAPIキーの取得\n\n"
-                "※APIキーの取得方法については、\n  Anti-Clickfix GitHub リポジトリの説明をご参照ください\n\n"
+                "※APIキーの取得方法については、\n  ClipBorder GitHub リポジトリの説明をご参照ください\n\n"
                 "2. 下の入力欄に取得したAPIキーを入力\n\n"
-                "※ 設定は一度行えば次回以降不要です。"
+                "※ APIキー設定は一度行えば次回以降不要です。"
             ),
             font=("Arial", 10),
             justify="left",
