@@ -51,7 +51,7 @@ def add_selected(var_list, wl, win):
 def whitelist_window(options):
     wl = load_whitelist()
     win = tk.Toplevel()
-    win.title("ホワイトリスト登録")
+    win.title("ClipBorder")
     win.geometry("500x400")
     win.resizable(False, False)
     win.configure(bg="#E8F8F5")  # 薄緑背景
